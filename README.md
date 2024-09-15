@@ -14,5 +14,4 @@ API key is in tele
 1. Clone the repository.
 2. Create a virtual environment and activate it.
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # Windows: venv\Scripts\activate
+   Windows: venv\Scripts\activate
