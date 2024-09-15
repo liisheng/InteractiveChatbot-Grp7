@@ -1,121 +1,114 @@
-import openai
-import speech_recognition as sr
-import time
-import os
-import json
+import openai  # Importing the OpenAI library to interact with the GPT-3.5-turbo model
+import speech_recognition as sr  # Importing the SpeechRecognition library to handle voice input
+import os  # Importing the os library to handle file operations
+import json  # Importing the json library to handle JSON data
+import threading  # Importing threading to handle simultaneous input
 
 # Set up your OpenAI API key
-openai.api_key = ''#<- api key here
+openai.api_key = ''  # OpenAI API key
 
 # File to store conversation history
 CONVERSATION_FILE = 'conversation_history.json'
 
-# Function to load conversation history from a file
-# If the file doesn't exist, it returns a default message
+# Load conversation history from a file
 def load_conversation_history():
     if os.path.exists(CONVERSATION_FILE):
-        # Load the conversation history from a JSON file
         with open(CONVERSATION_FILE, 'r') as file:
             return json.load(file)
     else:
-        # Return an initial message if there's no saved history
         return [{"role": "system", "content": "You are a helpful assistant."}]
 
-# Function to save the conversation history to a file after each interaction
+# Save conversation history to a file
 def save_conversation_history(conversation_history):
     with open(CONVERSATION_FILE, 'w') as file:
         json.dump(conversation_history, file)
 
-# Load the conversation history when the chatbot starts
+# Load the conversation history from the file (if it exists)
 conversation_history = load_conversation_history()
 
-# Function to get chatbot response using GPT-3.5-turbo API
+# get chatbot response using GPT-3.5-turbo
 def get_chatbot_response(user_input):
     # Append the user's input to the conversation history
     conversation_history.append({"role": "user", "content": user_input})
 
-    # Send the conversation history (including user's input) to GPT-3.5-turbo
+    # Create a chat completion using the OpenAI API
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo",  # gpt model(can change)
         messages=conversation_history
     )
 
-    # Extract the chatbot's response from the API response
-    chatbot_message = response['choices'][0]['message']['content']
+    # Append the assistant's response to the conversation history
+    assistant_response = response['choices'][0]['message']['content']
+    conversation_history.append({"role": "assistant", "content": assistant_response})
 
-    # Append the chatbot's response to the conversation history
-    conversation_history.append({"role": "assistant", "content": chatbot_message})
-
-    # Save the updated conversation history to the file
+    # Save the updated conversation history
     save_conversation_history(conversation_history)
 
-    return chatbot_message
+    # Return the reply
+    return assistant_response
 
-# Function to get voice input from the user using the microphone
-def get_voice_input():
-    recognizer = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Listening...")
-        audio = recognizer.listen(source)  # Listen for user input through the mic
+# Function to get voice input from the user, with a fallback mechanism
+def get_voice_input(stop_event):
+    recognizer = sr.Recognizer()  # Initialize the recognizer for speech recognition
+    with sr.Microphone() as source:  # Use the default microphone as the audio source
+        print("Listening...")  # Show that the program is listening for voice input
+        while not stop_event.is_set():
+            try:
+                audio = recognizer.listen(source, timeout=1, phrase_time_limit=5)  # Capture the audio input
+                print("Recognizing...")  # Show that the program is processing/understanding the audio input
+                text = recognizer.recognize_google(audio)  # Use Google's speech recognition service to convert audio to text
+                print(f"You said: {text}")  # Print the recognized text
+                return text  # Return the recognized text
+            except sr.WaitTimeoutError:
+                continue
+            except sr.UnknownValueError:
+                print("Sorry, I didn't catch that. Please try again.")
+            except sr.RequestError as e:
+                print("Speech recognition service is unavailable. Switching to text input mode.")
+                return "switch"
 
-        try:
-            # Use Google's speech recognition to convert audio to text
-            print("Recognizing...")
-            text = recognizer.recognize_google(audio)
-            print(f"You said: {text}")
-            return text
-        except sr.UnknownValueError:
-            # Handle cases where the speech was not recognized
-            print("Sorry, I didn't catch that.")
-            return None
-        except sr.RequestError as e:
-            # Handle errors with the speech recognition service
-            print("Speech recognition service is unavailable.")
-            return None
-
-# Main function to manage the chatbot and handle input methods (text/voice)
+# Main function to select and switch between input methods
 def main():
-    input_mode = "text"  # Default input mode is text
+    input_mode = "text"  # default = use text input
+    stop_event = threading.Event()
 
-    print("Welcome to the Interactive Chatbot with Fallback!")
-    print("I will remember our previous conversation across sessions.")
+    print("Welcome to the Interactive Chatbot!")
     print("You can switch between text and voice input anytime by typing 'switch'.")
 
-    # Main interaction loop
     while True:
         if input_mode == "text":
-            # Get user input in text mode
-            user_input = input("You: ")
+            user_input = input("You: ")  # ask the user for text input
             if user_input.lower() == "switch":
-                # Switch to voice input mode
-                input_mode = "voice"
+                input_mode = "voice"  # Switch to voice input mode if the user types 'switch'
                 print("Switched to voice input.")
                 continue
             elif user_input.lower() == "exit":
-                # Exit the conversation
-                print("Chatbot: Goodbye!")
+                print("Chatbot: Goodbye!")  # Exit the program if the user types 'exit'
                 break
-
         elif input_mode == "voice":
-            # Get voice input from the user in voice mode
-            print("Say 'switch' to switch to text input.")
-            user_input = get_voice_input()
-            if user_input is None:
-                continue
-            if user_input.lower() == "switch":
-                # Switch back to text input mode
-                input_mode = "text"
-                print("Switched to text input.")
-                continue
-            elif user_input.lower() == "exit":
-                # Exit the conversation
-                print("Chatbot: Goodbye!")
-                break
+            stop_event.clear()
+            voice_thread = threading.Thread(target=lambda: get_voice_input(stop_event))
+            voice_thread.start()
 
-        # Get chatbot response from GPT-3.5-turbo API
-        chatbot_reply = get_chatbot_response(user_input)
-        print(f"Chatbot: {chatbot_reply}")
-        time.sleep(1)  # Short delay to prevent overwhelming the API with requests
+            while voice_thread.is_alive():
+                user_input = input("You (text override): ")
+                if user_input.lower() == "switch":
+                    input_mode = "text"  # Switch to text input mode if the user types 'switch'
+                    print("Switched to text input.")
+                    stop_event.set()
+                    voice_thread.join()
+                    break
+                elif user_input.lower() == "exit":
+                    print("Chatbot: Goodbye!")  # Exit the program if the user types 'exit'
+                    stop_event.set()
+                    voice_thread.join()
+                    return
+
+            voice_thread.join()  # Ensure the voice thread has finished
+
+        if user_input and user_input.lower() != "switch":
+            chatbot_reply = get_chatbot_response(user_input)
+            print(f"Chatbot: {chatbot_reply}")
 
 if __name__ == "__main__":
     main()
