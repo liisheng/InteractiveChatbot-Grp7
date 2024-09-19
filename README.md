@@ -18,4 +18,5 @@ API key is in tele
 
 Pip Install Packages
    ```bash
-   pip install fastapi uvicorn sqlalchemy pymysql passlib python-jose
+   pip install fastapi uvicorn sqlalchemy pymysql passlib python-jose bcrypt passlib
+
