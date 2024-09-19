@@ -15,3 +15,7 @@ API key is in tele
 2. Create a virtual environment and activate it.
    ```bash
    Windows: venv\Scripts\activate
+
+Pip Install Packages
+   ```bash
+   pip install fastapi uvicorn sqlalchemy pymysql passlib python-jose
