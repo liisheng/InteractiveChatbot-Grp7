@@ -19,3 +19,6 @@ Sphinx==8.0.2
 thread==2.0.5
 urllib3_secure_extra==0.1.0
 xmlrpclib==1.0.1
+langdetect
+langid
+googletrans==4.0.0-rc1
