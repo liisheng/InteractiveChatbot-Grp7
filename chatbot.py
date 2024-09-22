@@ -3,14 +3,9 @@ import speech_recognition as sr  # Importing the SpeechRecognition library to ha
 import os  # Importing the os library to handle file operations
 import json  # Importing the json library to handle JSON data
 import threading  # Importing threading to handle simultaneous input
-from langdetect import detect
-import langid
-import logging
-from googletrans import Translator, LANGUAGES
-translator = Translator()
 
 # Set up your OpenAI API key
-
+openai.api_key = ''  # OpenAI API key
 
 # File to store conversation history
 CONVERSATION_FILE = 'conversation_history.json'
@@ -31,48 +26,16 @@ def save_conversation_history(conversation_history):
 # Load the conversation history from the file (if it exists)
 conversation_history = load_conversation_history()
 
-def translate_to_english(text, src_lang):
-    translator = Translator()
-    # Check if the detected source language is valid in googletrans
-    if src_lang not in LANGUAGES:
-        print(f"Translation error: '{src_lang}' is not a valid source language.")
-        return text  # Return the original text if the language is invalid
-    try:
-        return translator.translate(text, src=src_lang, dest='en').text
-    except Exception as e:
-        print(f"Translation failed: {e}")
-        return text  # Return the original text if translation fails
-
-def translate_to_target_language(text, target_lang):
-    translator = Translator()
-    # Check if the target language is valid in googletrans
-    if target_lang not in LANGUAGES:
-        print(f"Translation error: '{target_lang}' is not a valid target language.")
-        return text  # Return the original text if the language is invalid
-    try:
-        return translator.translate(text, src='en', dest=target_lang).text
-    except Exception as e:
-        print(f"Translation failed: {e}")
-        return text  # Return the original text if translation fails
-
 # get chatbot response using GPT-3.5-turbo
-def get_chatbot_response(user_input, language):
-    # Skip translation if language is undetermined
-    if language != 'en' and language != 'undetermined':
-        user_input = translate_to_english(user_input, language)
-    
+def get_chatbot_response(user_input):
     # Append the user's input to the conversation history
     conversation_history.append({"role": "user", "content": user_input})
 
-    try:
-        # Create a chat completion using the OpenAI API
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=conversation_history
-        )
-    except Exception as e:
-        print(f"Error communicating with OpenAI: {e}")
-        return "Sorry, I couldn't get a response."
+    # Create a chat completion using the OpenAI API
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # gpt model(can change)
+        messages=conversation_history
+    )
 
     # Append the assistant's response to the conversation history
     assistant_response = response['choices'][0]['message']['content']
@@ -80,10 +43,6 @@ def get_chatbot_response(user_input, language):
 
     # Save the updated conversation history
     save_conversation_history(conversation_history)
-
-    # Skip translation if language is undetermined
-    if language != 'en' and language != 'undetermined':
-        assistant_response = translate_to_target_language(assistant_response, language)
 
     # Return the reply
     return assistant_response
@@ -99,37 +58,14 @@ def get_voice_input(stop_event):
                 print("Recognizing...")  # Show that the program is processing/understanding the audio input
                 text = recognizer.recognize_google(audio)  # Use Google's speech recognition service to convert audio to text
                 print(f"You said: {text}")  # Print the recognized text
-
-                # Detect language of the spoken text
-                language_langdetect = detect(text)
-                language_langid, _ = langid.classify(text)
-                language = language_langid if language_langid == language_langdetect else "undetermined"
-                
-                print(f"Detected language: {language}")  # Output the detected language
-                
-                return text, language  # Return the recognized text and detected language
+                return text  # Return the recognized text
             except sr.WaitTimeoutError:
                 continue
             except sr.UnknownValueError:
                 print("Sorry, I didn't catch that. Please try again.")
             except sr.RequestError as e:
                 print("Speech recognition service is unavailable. Switching to text input mode.")
-                return "switch", "undetermined"
-            
-
-def detect_language(user_input):
-    # Detect language using langdetect and langid
-    language_langdetect = detect(user_input)
-    language_langid, confidence = langid.classify(user_input)
-    
-    print(f"langid detected: {language_langid} with confidence {confidence}")  # Print confidence level
-
-    if confidence > 5:  # If langid confidence is high enough, return that language
-        return language_langid
-    elif language_langdetect == language_langid:  # else if langid and langdetect agrees upon a detected language, use that one
-        return language_langdetect
-
-    return "undetermined"  # If confidence is low and they don't agree, return 'undetermined'
+                return "switch"
 
 # Main function to select and switch between input methods
 def main():
@@ -141,15 +77,7 @@ def main():
 
     while True:
         if input_mode == "text":
-            user_input = input("You: ")  # ask the user for text input      
-            
-            if len(user_input.strip()) < 4:  # Handle short inputs (like "hello") as English (This is to ensure short inputs are not falsely classified)
-                language = 'en'
-            else:
-                language = detect_language(user_input)  # Detect language of text input
-            
-            print(f"Detected language: {language}")  # Output the detected language
-            
+            user_input = input("You: ")  # ask the user for text input
             if user_input.lower() == "switch":
                 input_mode = "voice"  # Switch to voice input mode if the user types 'switch'
                 print("Switched to voice input.")
@@ -157,7 +85,6 @@ def main():
             elif user_input.lower() == "exit":
                 print("Chatbot: Goodbye!")  # Exit the program if the user types 'exit'
                 break
-
         elif input_mode == "voice":
             stop_event.clear()
             voice_thread = threading.Thread(target=lambda: get_voice_input(stop_event))
@@ -180,8 +107,7 @@ def main():
             voice_thread.join()  # Ensure the voice thread has finished
 
         if user_input and user_input.lower() != "switch":
-            # Pass both user_input and language to get_chatbot_response
-            chatbot_reply = get_chatbot_response(user_input, language)
+            chatbot_reply = get_chatbot_response(user_input)
             print(f"Chatbot: {chatbot_reply}")
 
 if __name__ == "__main__":
