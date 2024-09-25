@@ -10,6 +10,8 @@ This project is an interactive chatbot that uses OpenAI's API for natural langua
 
 ## API Key
 The API key is available in your Telegram (tele).
+before running, type this in terminal:
+set OPENAI_API_KEY=() <- put the API key in between the brackets(without the brackets)
 
 ---
 
