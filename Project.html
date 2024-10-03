@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Project.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <title>Interactive Chatbot</title>
+</head>
+<body>
+   
+    <div class="bigcircle">
+
+    <div class="robot">
+        <div class="ball"></div>
+        <div class="antenna"></div>
+        <div class="face">
+         <div class="circle"></div>
+         <div id="eye"></div>
+         <div id="mouth"></div>
+          </div>
+          <div class="body">
+            <div class="hand">
+              <div id="handl"></div>
+              <div id="handr"></div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop">
+          <div class="logo"></div>
+        </div>
+    </div>
+    <div class="context"></div>
+    <div id="mapContainer">
+        <button id="closeBtn" onclick="closeMap()">×</button>
+        <div id="map"></div>
+    </div>
+    </div>
+        
+        <div class="container">
+            <div class="chat-header"><img src="sitlogo.png" alt="sitlogo" width="147" height="80"></div>
+            <div class="chat-box" id="chatBox"></div>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Type a message...">
+                <button id="sendButton">Send</button>
+                <button onclick="showLocation()">Location</button>
+             </div>
+             </div>
+            <script src="Project.js" defer></script>
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+            <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+</body>
+</html>

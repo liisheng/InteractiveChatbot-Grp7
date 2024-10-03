@@ -1,0 +1,370 @@
+body {
+    font-family: fantasy;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffffff;
+    margin: 0;
+}
+
+.container {
+    height:100%;
+    width: 30%;
+    background: rgb(95, 93, 93);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.chat-header {
+    background: #ffffff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    flex-grow: 1;
+    background-color: #ffffff;
+}
+
+.chat-box div {
+    margin: 5px 0;
+}
+
+.user-message {
+    text-align: right;
+}
+
+.user-message span {
+    background: #ff0000;
+    color: rgb(255, 255, 255);
+    padding: 8px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    max-width: 75%;
+}
+
+.bot-message {
+    text-align: left;
+}
+
+.bot-message span {
+    background: #ff0000;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    max-width: 75%;
+}
+
+.input-area {
+    display: flex;
+    padding: 10px;
+    background: rgb(255, 0, 0);
+    align-items: baseline;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #818080;
+    border-radius: 20px;
+    margin-right: 5px;
+}
+#userInput {
+    border: 1px solid #000000;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-family: fantasy;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button {
+    padding: 10px 15px;
+    font-family: fantasy;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff0000;
+}
+
+.bigcircle{
+    position: absolute;
+    background-color: #ff0000;
+    height: 340px;
+    width: 340px;
+    border-radius: 500px;
+    top: 110px;
+    left: 100px;
+}
+
+
+
+.robot {
+    position: absolute;
+  }
+
+  .ball {
+    background-color: #ffffff;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top: 65px;
+    left: 153px;
+    border-radius: 50%;
+  }
+  .antenna {
+    background-color: #5c5b5b;
+    height: 30px;
+    width: 10px;
+    position: absolute;
+    top: 80px;
+    left: 155px;
+  }
+
+  
+  .face {
+    position: absolute;
+    background-color: #ffffff;
+    height: 80px;
+    width: 150px;
+    border-radius: 100px;
+    top: 110px;
+    left: 82px;
+  }
+  .circle {
+    position: absolute;
+    background-color: #000000;
+    height: 50px;
+    width: 100px;
+    border-radius: 100px;
+    top: 10px;
+    left: 30px;
+  }
+  #eye {
+    background-color: #00bfff;
+    height: 30px;
+    width: 12px;
+    position: absolute;
+    top: 20px;
+    left: 70px;
+    border-radius: 50%;
+    box-shadow: 18px 0 #00bfff;
+    animation: blink 1.5s infinite;
+   
+   
+  }
+
+  #eye.after {
+    background-color: #00bfff;
+    height: 30px;
+    width: 12px;
+    position: absolute;
+    top: 20px;
+    left: 70px;
+    border-radius: 50%;
+    box-shadow: 18px 0 #00bfff;
+    animation: blink 1.5s infinite;
+
+  }
+  #mouth {
+    
+    height: 7px;
+    width: 30px;
+    position: absolute;
+    top: 53px;
+    left: 70px;
+    border-radius: 50%;
+  
+  }
+
+  #mouth.after {
+    background-color: #00bfff;
+    height: 7px;
+    width: 20px;
+    position: absolute;
+    top: 53px;
+    left: 75px;
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+
+  }
+
+  @keyframes blink {
+    0% {
+      transform: scaleY(0.3);
+    }
+    4% {
+      transform: scaleY(0.3);
+    }
+    5% {
+      transform: scaleY(1);
+    }
+  }
+  
+  
+  .body {
+    position: absolute;
+    height: 0;
+    width: 100px;
+    border-bottom: 110px solid #ffffff;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    top: 185px;
+    left: 70px;
+  }
+  .hand {
+    height: 50px;
+    position: absolute;
+  }
+
+  #handl {
+    position: relative;
+    background-color: #000000;
+    height: 29px;
+    width: 22px;
+    border-radius: 10px;
+    left: 45px;
+    top: 30px;
+   
+  }
+
+  #handl.after {
+    position: relative;
+    background-color: #000000;
+    height: 29px;
+    width: 22px;
+    border-radius: 10px;
+    left: 45px;
+    top: 30px;
+    animation: type-1 0.2s infinite;
+  }
+  @keyframes type-1 {
+    50% {
+      transform: translateY(50px);
+      height: 18px;
+    }
+  }
+  #handr {
+    position: relative;
+    background-color: #000000;
+    height: 18px;
+    width: 22px;
+    border-radius: 10px;
+    left: 85px;
+    top: 48px;
+   
+  }
+
+  #handr.after {
+    position: relative;
+    background-color: #000000;
+    height: 18px;
+    width: 22px;
+    border-radius: 10px;
+    left: 85px;
+    top: 48px;
+    animation: type-2 0.2s infinite;
+  }
+  @keyframes type-2 {
+    50% {
+      transform: translateY(-40px);
+      height: 29px;
+    }
+  }
+  
+  .laptop {
+    position: absolute;
+    background-color: #333399;
+    height: 15px;
+    width: 120px;
+    border-radius: 15px;
+    top: 280px;
+    left: 190px;
+  }
+  .laptop:before {
+    position: absolute;
+    content: "";
+    background-color: #330033;
+    height: 15px;
+    width: 100px;
+    border-radius: 15px;
+    top: 0;
+    right: 80px;
+  }
+  .laptop:after {
+    position: absolute;
+    content: "";
+    background-color: #330033;
+    height: 80px;
+    width: 110px;
+    bottom: 14px;
+    left: 10px;
+    border-radius: 5px;
+    transform: skew(-10deg);
+  }
+  .logo {
+    position: absolute;
+    background-color: #6666cc;
+    height: 18px;
+    width: 35px;
+    border-radius: 20px;
+    top: -40px;
+    left: 50px;
+    z-index: 1;
+  }
+
+  #mapContainer {
+    position: absolute;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+   
+    
+}
+
+#map {
+    height: 300px;
+    width: 100%;
+    display: none;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+}
+
+#closeBtn {
+    display: none;
+    position: absolute;
+    top: 250px;
+    right: 1px;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 30px;
+    z-index: 1000; /* Make sure it's on top of the map */
+}
+  
