@@ -10,6 +10,7 @@ import langid
 from googletrans import Translator, LANGUAGES
 from flask import Flask, request, jsonify
 import threading
+import speech_recognition as sr
 
 
 # Initialize Flask app
