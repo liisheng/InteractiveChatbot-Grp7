@@ -1,0 +1,74 @@
+2024-10-03 19:16:30,648:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-10-03 19:16:30,648:INFO:[33mPress CTRL+C to quit[0m
+2024-10-03 19:19:58,255:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:19:58,256:INFO:127.0.0.1 - - [03/Oct/2024 19:19:58] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:20:53,393:INFO:127.0.0.1 - - [03/Oct/2024 19:20:53] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:21:04,938:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:21:04,938:INFO:127.0.0.1 - - [03/Oct/2024 19:21:04] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:21:12,215:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:21:12,215:INFO:127.0.0.1 - - [03/Oct/2024 19:21:12] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:25:57,869:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:25:57,870:INFO:127.0.0.1 - - [03/Oct/2024 19:25:57] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:26:02,749:INFO:127.0.0.1 - - [03/Oct/2024 19:26:02] "[31m[1mPOST /chat HTTP/1.1[0m" 400 -
+2024-10-03 19:26:14,500:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:26:14,501:INFO:127.0.0.1 - - [03/Oct/2024 19:26:14] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:26:19,194:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:26:19,195:INFO:127.0.0.1 - - [03/Oct/2024 19:26:19] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:26:30,279:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:26:30,280:INFO:127.0.0.1 - - [03/Oct/2024 19:26:30] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:26:34,322:INFO:127.0.0.1 - - [03/Oct/2024 19:26:34] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:26:50,218:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:26:50,219:INFO:127.0.0.1 - - [03/Oct/2024 19:26:50] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:26:56,510:INFO:127.0.0.1 - - [03/Oct/2024 19:26:56] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:27:05,146:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:27:05,147:INFO:127.0.0.1 - - [03/Oct/2024 19:27:05] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:28:41,187:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:28:41,187:INFO:127.0.0.1 - - [03/Oct/2024 19:28:41] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:30:50,586:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:30:50,587:INFO:127.0.0.1 - - [03/Oct/2024 19:30:50] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:30:52,788:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:30:52,788:INFO:127.0.0.1 - - [03/Oct/2024 19:30:52] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:42:40,389:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:42:40,389:INFO:127.0.0.1 - - [03/Oct/2024 19:42:40] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:42:43,613:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:42:43,614:INFO:127.0.0.1 - - [03/Oct/2024 19:42:43] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:43:45,070:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:43:45,070:INFO:127.0.0.1 - - [03/Oct/2024 19:43:45] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:44:45,059:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:44:45,059:INFO:127.0.0.1 - - [03/Oct/2024 19:44:45] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:47:35,303:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:47:35,303:INFO:127.0.0.1 - - [03/Oct/2024 19:47:35] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:47:37,930:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:47:37,931:INFO:127.0.0.1 - - [03/Oct/2024 19:47:37] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:50:45,952:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:50:45,953:INFO:127.0.0.1 - - [03/Oct/2024 19:50:45] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:50:49,289:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:50:49,290:INFO:127.0.0.1 - - [03/Oct/2024 19:50:49] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:54:25,070:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:54:25,071:INFO:127.0.0.1 - - [03/Oct/2024 19:54:25] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:58:18,267:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:58:18,268:INFO:127.0.0.1 - - [03/Oct/2024 19:58:18] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:58:28,935:INFO:127.0.0.1 - - [03/Oct/2024 19:58:28] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:58:42,283:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:58:42,284:INFO:127.0.0.1 - - [03/Oct/2024 19:58:42] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:58:48,651:INFO:127.0.0.1 - - [03/Oct/2024 19:58:48] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:58:54,368:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 19:58:54,368:INFO:127.0.0.1 - - [03/Oct/2024 19:58:54] "POST /chat HTTP/1.1" 200 -
+2024-10-03 19:59:39,132:INFO:127.0.0.1 - - [03/Oct/2024 19:59:39] "POST /chat HTTP/1.1" 200 -
+2024-10-03 20:00:06,695:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 20:00:06,695:INFO:127.0.0.1 - - [03/Oct/2024 20:00:06] "POST /chat HTTP/1.1" 200 -
+2024-10-03 20:03:23,072:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 20:03:23,072:INFO:127.0.0.1 - - [03/Oct/2024 20:03:23] "POST /chat HTTP/1.1" 200 -
+2024-10-03 20:03:30,221:INFO:127.0.0.1 - - [03/Oct/2024 20:03:30] "POST /chat HTTP/1.1" 200 -
+2024-10-03 20:03:38,268:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 20:03:38,269:INFO:127.0.0.1 - - [03/Oct/2024 20:03:38] "POST /chat HTTP/1.1" 200 -
+2024-10-03 20:05:10,885:INFO:127.0.0.1 - - [03/Oct/2024 20:05:10] "POST /chat HTTP/1.1" 200 -
+2024-10-03 20:05:18,600:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 20:05:18,601:INFO:127.0.0.1 - - [03/Oct/2024 20:05:18] "POST /chat HTTP/1.1" 200 -
+2024-10-03 20:05:21,027:INFO:127.0.0.1 - - [03/Oct/2024 20:05:21] "[31m[1mPOST /chat HTTP/1.1[0m" 400 -
+2024-10-03 20:05:25,411:INFO:error_code=None error_message="Invalid value for 'content': expected a string, got null." error_param=messages.[1].content error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2024-10-03 20:05:25,411:INFO:127.0.0.1 - - [03/Oct/2024 20:05:25] "POST /chat HTTP/1.1" 200 -
+2024-10-03 20:09:15,649:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2024-10-03 20:09:15,649:INFO:[33mPress CTRL+C to quit[0m
