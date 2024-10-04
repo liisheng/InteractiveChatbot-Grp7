@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Chatbot</title>
+</head>
+<body>
+    <h1>News Chatbot</h1>
+    <input type="text" id="query" placeholder="Enter search term">
+    <button onclick="fetchNews()">Get News</button>
+    <div id="results"></div>
+
+    <script>
+        async function fetchNews() {
+            const query = document.getElementById('query').value;
+            const response = await fetch('/get_news', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query }),
+            });
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // Clear previous results
+
+            if (response.ok) {
+                const articles = await response.json();
+                articles.forEach(article => {
+                    resultsDiv.innerHTML += `<h3>${article.title}</h3><p>Source: ${article.source}</p><a href="${article.url}" target="_blank">Read more</a><hr>`;
+                });
+            } else {
+                const errorMessage = await response.json();
+                resultsDiv.innerHTML = `<p>${errorMessage.message || errorMessage.error}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
