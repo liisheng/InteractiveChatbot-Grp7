@@ -7,7 +7,6 @@ filelock==3.16.0
 HTMLParser==0.0.2
 ipython==8.12.3
 ipywidgets==8.1.5
-jnius==1.1.0
 keyring==25.3.0
 openai==0.28.0
 Pillow==10.4.0
@@ -18,7 +17,6 @@ SpeechRecognition==3.10.4
 Sphinx==8.0.2
 thread==2.0.5
 urllib3_secure_extra==0.1.0
-xmlrpclib==1.0.1
 langdetect
 langid
 googletrans==4.0.0-rc1
